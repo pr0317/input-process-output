@@ -1,8 +1,20 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import '../charts/BarChart.js';
+
+
+
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const [userData, setUserData] = useState(
+    {
+      labels: ,
+      datasets: []  
+    }
+  )
+
+
+  return <Component {...pageProps} BarChart chartData={} />
 }
 
 export default MyApp
