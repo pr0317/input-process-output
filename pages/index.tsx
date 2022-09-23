@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Papa from 'papaparse';
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 /**
  * Formulario para importar un CSV
@@ -33,10 +34,9 @@ class Home extends Component {
   parseFileToJSON(){
     let dataParse : any = Papa.parse(this.file);
     if(!dataParse.errors.length){
-      dataParse.data.shift();
+      dataParse.data.shift();      
       let ciudadesSalida = dataParse.data.map((element : string) => element[2]);
       let ciudadesLlegada = dataParse.data.map((element : string) => element[3]);
-      // console.log(ciudadesSalida, ciudadesLlegada);
     } else {
       alert("Ha ocurrido un error importando la data del CSV")
     }

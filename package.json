@@ -17,6 +17,7 @@
     "tw-elements": "^1.0.0-alpha12"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.37",
     "@types/node": "^18.7.18",
     "@types/papaparse": "^5.3.5",
     "@types/react": "18.0.20",
