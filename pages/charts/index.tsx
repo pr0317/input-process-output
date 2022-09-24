@@ -2,70 +2,203 @@ import { Component } from 'react'
 import Chart from 'chart.js';
 
 
-class Charts extends Component {
+class Charts extends Component<{}, { mainData: any }> {
 
-  blue: String = "";
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      mainData: []
+    }
+  }
 
-
-  barCombinedLine: object = {
-        labels: ["Amparo","Seddik","M",
-        "Laarbi","Grietje","Nacor","Soufia",
-        "Laura","Rogers","Annalisa","Els","Jimmie",
-        "Braulia","Salete","Marinel","Maimoun","Quique",
-        "Alexsandro","Alta","Jessenia","Etor","Pelegri","Isabel","Zabulon","Youcef","Dunia","Elisabete","Brahima","Danya","Bart"],
-        datasets: [
-        {
-          label: 'taller',
-          data: [3,1,3,3,3,4,3,4,3,3,2,2,5,2,4,2,1,5,4,1,2,3,5,3,4,5,2,5,3,4],
-          borderColor: "#CACFD2",
-          backgroundColor: "#884EA0",
-          order: 1
-        },
-        {
-          label: 'investigacion',
-          data: [5,5,2,5,1,2,1,5,1,2,4,4,4,3,4,3,5,2,1,2,2,5,4,4,5,3,1,5,4,2],
-          borderColor: "#CACFD2",
-          backgroundColor: "#F39C12",
-          order: 1
-        },
-        {
-          label: 'parcial',
-          data: [1,4,4,3,5,1,5,4,2,1,2,5,4,3,5,3,4,1,1,2,1,5,1,2,5,5,3,4,5,3],
-          borderColor: "#CACFD2",
-          backgroundColor: "#5499C7",
-          order: 1
-        },
-        {
-          label: 'definitiva',
-          data: [3,3.33,3,3.67,3,2.33,3,4.33,2,2,2.67,3.67,4.33,2.67,4.33,2.67,3.33,2.67,2,1.67,1.67,4.33,3.33,3,4.67,4.33,2,4.67,4,3],
-          borderColor: "#F4D03F",
-          backgroundColor: "#F4D03F",
-          type: 'line',
-          order: 0
-        }
-      ]
-    };
-
-  componentDidMount(){ //render component charts
+  componentDidMount() {
+    let jsonString = localStorage.getItem("json");
+    this.setState({
+      mainData: JSON.parse(jsonString ?? "{}")
+    }, () => {
       const canvas: any = document.getElementById('graph_2') as HTMLCanvasElement;
       const ctx: any = canvas.getContext('2d');
+      let barCombinedLine: object = {
+        labels: this.state.mainData.map((element:any) => element.studentName),
+        datasets: [
+          {
+            label: 'taller',
+            data: this.state.mainData.map((element:any) => element.homework),
+            borderColor: "#CACFD2",
+            backgroundColor: "#884EA0",
+            order: 1
+          },
+          {
+            label: 'investigacion',
+            data: this.state.mainData.map((element:any) => element.laboratory),
+            borderColor: "#CACFD2",
+            backgroundColor: "#F39C12",
+            order: 1
+          },
+          {
+            label: 'parcial',
+            data: this.state.mainData.map((element:any) => element.exam),
+            borderColor: "#CACFD2",
+            backgroundColor: "#5499C7",
+            order: 1
+          },
+          {
+            label: 'definitiva',
+            data: this.state.mainData.map((element:any) => element.finalGrade),
+            borderColor: "#F4D03F",
+            backgroundColor: "#F4D03F",
+            type: 'line',
+            order: 0
+          }
+        ]
+      };
       const config = {
         type: 'bar',
-        data: this.barCombinedLine,          
+        data: barCombinedLine,
       };
-      new Chart(ctx,config);        
-      //const graph_2 = new Chart(ctx,config);
+      new Chart(ctx, config);
+    });
   }
-  
 
-  render() { 
-      return <>
-      <div className = 'w-[600px]'>
-        <h1>Combined Bar+Line Graph Chart</h1>
-        <canvas id="graph_2" width="1800" height="900"></canvas>          
-      </div>
-      </>
+  render() {
+    return <div className='h-screen min-h-min'>
+      <header className='w-full p-3 bg-sky-600 shadow-md'>
+        <h1 className='text-center text-white font-bold'>Universidad Central | Ingeniería de Sistemas</h1>
+      </header>
+      <main className='w-5/6 m-auto my-5 flex flex-col gap-3'>
+        <div className='flex flex-col gap-5'>
+          <div className='bg-white rounded shadow-md p-4'>
+            <h2 className='font-bold text-center'>Gráfica y Estadísitcas finales</h2>
+            <canvas id="graph_2" width="1800" height="900"></canvas>
+          </div>
+          <div className='bg-white rounded shadow-md p-4'>
+            <h2 className='font-bold text-center'>Todos los estudiantes con la calificación definitiva</h2>
+            <table className='w-full text-center'>
+              <thead>
+                <tr>
+                  <th>IT</th>
+                  <th>Cédula</th>
+                  <th>Nombre</th>
+                  <th>Definitiva</th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.state.mainData.map((item:any, key: any) => {
+                  return (
+                    <tr key={key}>
+                      <td>{ item.it }</td>
+                      <td>{ item.studentID }</td>
+                      <td>{ item.studentName }</td>
+                      <td>{ item.finalGrade }</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className='bg-white rounded shadow-md p-4'>
+            <h2 className='font-bold text-center'>Todos los estudiantes con las calificaciones parciales</h2>
+            <table className='w-full text-center'>
+              <thead>
+                <tr>
+                  <th>IT</th>
+                  <th>Cédula</th>
+                  <th>Nombre</th>
+                  <th>Taller</th>
+                  <th>Investigación</th>
+                  <th>Parcial</th>
+                  <th>Definitiva</th>
+                  <th>Paso</th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.state.mainData.map((item:any, key: any) => {
+                  return (
+                    <tr key={key}>
+                      <td>{ item.it }</td>
+                      <td>{ item.studentID }</td>
+                      <td>{ item.studentName }</td>
+                      <td>{ item.homework }</td>
+                      <td>{ item.laboratory }</td>
+                      <td>{ item.exam }</td>
+                      <td>{ item.finalGrade }</td>
+                      <td>{ item.finalGrade >= 3 ? "Si" : "No" }</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className='bg-white rounded shadow-md p-4'>
+            <h2 className='font-bold text-center'>Los diez primeros estudiantes con calificación más alta</h2>
+            <table className='w-full text-center'>
+              <thead>
+                <tr>
+                  <th>IT</th>
+                  <th>Cédula</th>
+                  <th>Nombre</th>
+                  <th>Definitiva</th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.state.mainData.sort((b: any,a: any) => {
+                  if (a.finalGrade < b.finalGrade) return -1;
+                  if (a.finalGrade < b.finalGrade) return 1;
+                  return 0;
+                }).slice(0, 10).map((item:any, key: any) => {
+                  return (
+                    <tr key={key}>
+                      <td>{ item.it }</td>
+                      <td>{ item.studentID }</td>
+                      <td>{ item.studentName }</td>
+                      <td>{ item.homework }</td>
+                      <td>{ item.laboratory }</td>
+                      <td>{ item.exam }</td>
+                      <td>{ item.finalGrade }</td>
+                      <td>{ item.finalGrade >= 3 ? "Si" : "No" }</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className='bg-white rounded shadow-md p-4 mb-10'>
+            <h2 className='font-bold text-center'>Los cinco últimos estudiantes con la nota más baja</h2>
+            <table className='w-full text-center'>
+              <thead>
+                <tr>
+                  <th>IT</th>
+                  <th>Cédula</th>
+                  <th>Nombre</th>
+                  <th>Definitiva</th>
+                </tr>
+              </thead>
+              <tbody>
+                { this.state.mainData.sort((a: any,b: any) => {
+                  if (a.finalGrade < b.finalGrade) return -1;
+                  if (a.finalGrade < b.finalGrade) return 1;
+                  return 0;
+                }).slice(0, 5).map((item:any, key: any) => {
+                  return (
+                    <tr key={key}>
+                      <td>{ item.it }</td>
+                      <td>{ item.studentID }</td>
+                      <td>{ item.studentName }</td>
+                      <td>{ item.homework }</td>
+                      <td>{ item.laboratory }</td>
+                      <td>{ item.exam }</td>
+                      <td>{ item.finalGrade }</td>
+                      <td>{ item.finalGrade >= 3 ? "Si" : "No" }</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
   }
 }
 
-export default Charts
+export default Charts;
