@@ -20,3 +20,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+table {
+  border: 1px solid black;
+  margin-top: 20px
+}
+
+table tr:nth-child(2n) {
+  background-color: rgb(224, 232, 235);
+}

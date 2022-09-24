@@ -92,7 +92,7 @@ class Charts extends Component<{}, { mainData: any }> {
                 { this.state.mainData.map((item:any, key: any) => {
                   return (
                     <tr key={key}>
-                      <td>{ item.it }</td>
+                      <td>{ key+1 }</td>
                       <td>{ item.studentID }</td>
                       <td>{ item.studentName }</td>
                       <td>{ item.finalGrade }</td>
@@ -121,7 +121,7 @@ class Charts extends Component<{}, { mainData: any }> {
                 { this.state.mainData.map((item:any, key: any) => {
                   return (
                     <tr key={key}>
-                      <td>{ item.it }</td>
+                      <td>{ key+1 }</td>
                       <td>{ item.studentID }</td>
                       <td>{ item.studentName }</td>
                       <td>{ item.homework }</td>
@@ -143,7 +143,11 @@ class Charts extends Component<{}, { mainData: any }> {
                   <th>IT</th>
                   <th>Cédula</th>
                   <th>Nombre</th>
+                  <th>Taller</th>
+                  <th>Investigacion</th>
+                  <th>Parcial</th>
                   <th>Definitiva</th>
+                  <th>Aprobo</th>
                 </tr>
               </thead>
               <tbody>
@@ -154,7 +158,7 @@ class Charts extends Component<{}, { mainData: any }> {
                 }).slice(0, 10).map((item:any, key: any) => {
                   return (
                     <tr key={key}>
-                      <td>{ item.it }</td>
+                      <td>{ key+1 }</td>
                       <td>{ item.studentID }</td>
                       <td>{ item.studentName }</td>
                       <td>{ item.homework }</td>
@@ -173,10 +177,14 @@ class Charts extends Component<{}, { mainData: any }> {
             <table className='w-full text-center'>
               <thead>
                 <tr>
-                  <th>IT</th>
+                  <th >IT</th>
                   <th>Cédula</th>
                   <th>Nombre</th>
+                  <th>Taller</th>
+                  <th>Investigacion</th>
+                  <th>Parcial</th>
                   <th>Definitiva</th>
+                  <th>Aprobo</th>
                 </tr>
               </thead>
               <tbody>
@@ -184,10 +192,14 @@ class Charts extends Component<{}, { mainData: any }> {
                   if (a.finalGrade < b.finalGrade) return -1;
                   if (a.finalGrade < b.finalGrade) return 1;
                   return 0;
-                }).slice(0, 5).map((item:any, key: any) => {
+                }).slice(0, 5).sort((b: any,a: any) => {
+                  if (a.finalGrade < b.finalGrade) return -1;
+                  if (a.finalGrade < b.finalGrade) return 1;
+                  return 0;
+                }).map((item:any, key: any) => {
                   return (
                     <tr key={key}>
-                      <td>{ item.it }</td>
+                      <td>{ key+1 }</td>
                       <td>{ item.studentID }</td>
                       <td>{ item.studentName }</td>
                       <td>{ item.homework }</td>
