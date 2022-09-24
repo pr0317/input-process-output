@@ -46,7 +46,7 @@ class Charts extends Component<{}, { mainData: any }> {
             label: 'definitiva',
             data: this.state.mainData.map((element:any) => element.finalGrade),
             borderColor: "#F4D03F",
-            backgroundColor: "#F4D03F",
+            //backgroundColor: "#F4D03F",
             type: 'line',
             order: 0
           }
