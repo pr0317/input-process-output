@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Papa from 'papaparse';
-import { CLIENT_RENEG_LIMIT } from 'tls';
+import Router from 'next/router'
 
 /**
  * Formulario para importar un CSV
@@ -9,6 +9,7 @@ import { CLIENT_RENEG_LIMIT } from 'tls';
  */
 class Home extends Component {
   file: any;
+  mainData: any;
   dataChart: {
     labels: string[],
     datasets: Object[]
@@ -21,6 +22,7 @@ class Home extends Component {
       labels: [],
       datasets: []
     };
+    this.mainData = [];
   }
 
   getFile(event: any){
@@ -32,18 +34,35 @@ class Home extends Component {
   }
 
   parseFileToJSON(){
-    let dataParse : any = Papa.parse(this.file);
-    if(!dataParse.errors.length){
-      dataParse.data.shift();      
-      let ciudadesSalida = dataParse.data.map((element : string) => element[2]);
-      let ciudadesLlegada = dataParse.data.map((element : string) => element[3]);
+    if(this.file){
+      let dataParse : any = Papa.parse(this.file);
+      if(!dataParse.errors.length){
+        dataParse.data.shift();
+        dataParse.data.forEach((element:any)=> {
+          this.mainData.push({
+            it: parseInt(element[0]),
+            studentID: parseInt(element[1]),
+            studentName: element[2],
+            homework: parseFloat(element[4]),
+            laboratory: parseFloat(element[5]),
+            exam: parseFloat(element[6]),
+            finalGrade: parseFloat(element[7]),
+          });
+        });
+
+        localStorage.setItem("json",JSON.stringify(this.mainData));
+        Router.push('/charts');
+
+      } else {
+        alert("Ha ocurrido un error importando la data del CSV")
+      }
     } else {
-      alert("Ha ocurrido un error importando la data del CSV")
+      alert("Debe seleccionar primero un archivo")
     }
   }
 
   render () {
-    return <div className='h-screen min-h-min bg-gray-100'>
+    return <div className='h-screen min-h-min'>
       <header className='w-full p-3 bg-sky-600 shadow-md'>
         <h1 className='text-center text-white font-bold'>Universidad Central | Ingeniería de Sistemas</h1>
       </header>
