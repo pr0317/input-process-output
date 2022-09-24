@@ -19,7 +19,7 @@ class Charts extends Component<{}, { mainData: any }> {
       const canvas: any = document.getElementById('graph_2') as HTMLCanvasElement;
       const ctx: any = canvas.getContext('2d');
       let barCombinedLine: object = {
-        labels: this.state.mainData.map((element:any) => element.studentName),
+        labels: this.state.mainData.map((element:any) => element.studentName.split(" ")[0]),
         datasets: [
           {
             label: 'taller',
