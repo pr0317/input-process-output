@@ -52,11 +52,17 @@ class Charts extends Component<{}, { mainData: any }> {
           }
         ]
       };
-      const config = {
+
+      const config = {                
         type: 'bar',
         data: barCombinedLine,
       };
       new Chart(ctx, config);
+      Chart.scaleService.updateScaleDefaults('linear',{
+        ticks: {
+          min: 0
+        }
+      })
     });
   }
 
