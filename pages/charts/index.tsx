@@ -5,6 +5,7 @@ de Next js
 
 import { Component } from 'react'
 import Chart from 'chart.js';
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 
 class Charts extends Component<{}, { mainData: any }> {
@@ -29,7 +30,6 @@ class Charts extends Component<{}, { mainData: any }> {
     }, () => {
       const canvas: any = document.getElementById('graph_2') as HTMLCanvasElement;
       const ctx: any = canvas.getContext('2d');
-
       let barCombinedLine: object = {
         labels: this.state.mainData.map((element:any) => element.studentName.split(" ")[0]),
         datasets: [

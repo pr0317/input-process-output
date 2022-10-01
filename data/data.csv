@@ -1,51 +1,31 @@
-id;nombre;ciudad_salida;ciudad_llegada
-1;Amparo;Cartagena;Barranquilla
-2;Seddik;Buenaventura;Barrancabermeja
-3;M;Buenaventura;Barrancabermeja
-4;Laarbi;Cali;Bucaramanga
-5;Grietje;Barrancabermeja;Apartado
-6;Nacor;Bucaramanga;Apartado
-7;Soufia;Barrancabermeja;BogotaD.C
-8;Laura;Buenaventura;BogotaD.C
-9;Rogers;BogotaD.C;Apartado
-10;Annalisa;Barrancabermeja;Buenaventura
-11;Els;Buenaventura;Barranquilla
-12;Jimmie;Bucaramanga;Buga
-13;Braulia;Armenia;Bucaramanga
-14;Salete;Cali;Barrancabermeja
-15;Marinel;Cali;Bucaramanga
-16;Maimoun;Apartado;Barrancabermeja
-17;Quique;Barranquilla;Cartagena
-18;Alexsandro;Bucaramanga;Apartado
-19;Alta;Bucaramanga;Barrancabermeja
-20;Jessenia;Armenia;Apartado
-21;Etor;Barranquilla;Barrancabermeja
-22;Pelegri;Buga;Apartado
-23;Isabel;Cartagena;Barranquilla
-24;Zabulon;Barranquilla;Barrancabermeja
-25;Youcef;Cali;Buga
-26;Dunia;Bucaramanga;Buga
-27;Elisabete;BogotaD.C;Barranquilla
-28;Brahima;Barrancabermeja;BogotaD.C
-29;Danya;BogotaD.C;Barranquilla
-30;Bart;Apartado;Armenia
-31;Jacinta;Cali;Apartado
-32;Sindia;Bucaramanga;Barranquilla
-33;Mena;Buga;BogotaD.C
-34;Cesaltina;Armenia;Cali
-35;Nayem;Buenaventura;Cali
-36;Jhenny;Buga;BogotaD.C
-37;Erenia;Armenia;Cali
-38;Khadouj;Cartagena;Barranquilla
-39;Bran;BogotaD.C;Cali
-40;Afif;BogotaD.C;Armenia
-41;Wiam;Buenaventura;Cali
-42;Agata;Barrancabermeja;Bucaramanga
-43;Eleanor;Armenia;Bucaramanga
-44;Reatha;Armenia;BogotaD.C
-45;Dior;Buenaventura;BogotaD.C
-46;Shena;Cali;Bucaramanga
-47;Lesya;Armenia;Cali
-48;Alister;BogotaD.C;Cali
-49;Ylda;Buga;BogotaD.C
-50;Xiara;Cali;Barrancabermeja
+codigo;nombre;taller;investigacion;parcial
+1827117767;Amparo Martinez;0.3;3.88;1.21
+5226919831;Seddik Perez;1.83;4.12;4.58
+4283835006;Maria Shadow;4.83;2.08;1.21
+1397952796;Laarbi Teheran;2.18;0.2;2.42
+1071995036;Grietje Rich;4.08;1.42;1.92
+1733327624;Nacor Polan;2.41;3.41;0.63
+4077588918;Soufia Rufus;0.35;1.95;2.6
+467559239;Laura Arias;4.33;1;1.67
+1968270582;Rogers Lopez;1.81;2.56;3.36
+2328266757;Annalisa Castiblanco;4.55;4.39;0.63
+4303798363;Els mano;4.29;3.01;2.09
+3489478201;Jimmie Valbuena;4.99;1.52;4.93
+2175136747;Braulia Albornoz;2.5;3.9;0.78
+2068252090;Salete Garzon;2.68;1.78;1.8
+2580839802;Marinel Lips;2.98;0.06;1.46
+5078933047;Maimoun Brown;0.61;0.37;0.28
+3105014145;Quique Garcia;3.58;3.49;0.42
+4254684631;Alexsandro Miller;2.63;0.01;2.43
+5276814048;Alta Smith;3.19;0.29;2.17
+4623867267;Jessenia Brown;4.24;2.92;4.25
+4407378287;Etor Thomas;1.31;4.83;3.77
+46724947;Pelegri Lee;3.02;3.33;3.2
+1407407153;Isabel Perez;2.28;2.48;4.11
+1124259611;Zabulon Thompson;2.92;4.76;4.91
+3643260802;Youcef White;0.42;0.19;3.55
+3243125824;Dunia Moore;4.41;2.93;3.27
+3087312253;Elisabete Sanchez;3;4;4.6
+327823086;Brahima Harris;1.63;0.56;0.13
+5001358007;Danya Clark;1.91;1.43;4.86
+3499498843;Bart Taylor;3.1;0.24;3.11
