@@ -50,15 +50,16 @@ una ruta diferente.
       if(!dataParse.errors.length){
         dataParse.data.shift();
         dataParse.data.forEach((element:any)=> {
-          this.mainData.push({
-            it: parseInt(element[0]),
-            studentID: parseInt(element[1]),
-            studentName: element[2],
-            homework: parseFloat(element[4]),
-            laboratory: parseFloat(element[5]),
-            exam: parseFloat(element[6]),
-            finalGrade: parseFloat(element[7]),
-          });
+          if(element[0] && element[0] != ""){
+            this.mainData.push({
+              studentID: parseInt(element[0]),
+              studentName: element[1],
+              homework: parseFloat(element[2]),
+              laboratory: parseFloat(element[3]),
+              exam: parseFloat(element[4]),
+              finalGrade: Math.round(((parseFloat(element[2]) + parseFloat(element[3]) + parseFloat(element[4])) / 3) * 100) / 100,
+            });
+          }
         });
 
         localStorage.setItem("json",JSON.stringify(this.mainData));
@@ -88,12 +89,13 @@ una ruta diferente.
         <div className='p-2 bg-sky-100 text-zinc-700 rounded border w-full text-sm'>
           <p>Puede importar un archivo con una estructura csv (delimitado por comas), con las siguientes columnas de información:</p>
           <ul className='list-decimal m-4'>
-            <li>Columna A: Id</li>
-            <li>Columna B: Nombre de la persona</li>
-            <li>Columna C: Ciudad de Salida</li>
-            <li>Columna D: Ciudad de Llegada</li>
+            <li>Columna A: Código</li>
+            <li>Columna B: Nombre del estudiante</li>
+            <li>Columna C: Nota Taller</li>
+            <li>Columna D: Nota Investigación</li>
+            <li>Columna E: Nota Parcial</li>
           </ul>
-          <p>Puede ver un ejemplo de la estructura mediante el siguiente archivo <a href="https://github.com/pr0317/input-process-output/blob/main/data/data_v2.csv" className='underline text-sky-500'>archivo.csv</a></p>
+          <p>Puede ver un ejemplo de la estructura mediante el siguiente archivo <a href="https://github.com/pr0317/input-process-output/blob/main/data/data.csv" className='underline text-sky-500' target="_blank">Archivo.csv</a></p>
         </div>
         <div className='my-2'>
           <label htmlFor="formFile" className="form-label inline-block mb-2 text-gray-700 font-bold">Archivo CSV</label>
