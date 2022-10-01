@@ -7,6 +7,7 @@ import Router from 'next/router'
  * Leer los datos del Excel y generar un formato JSON
  * Redireccionar a la vista de la clase charts
  */
+
 class Home extends Component {
   file: any;
   mainData: any;
@@ -25,6 +26,8 @@ class Home extends Component {
     this.mainData = [];
   }
 
+  /* Esta parte del cógido de la página obtiene el archivo .csv de forma local */
+  
   getFile(event: any){
     if(event?.target?.files.length > 0){
       var fr=new FileReader();
@@ -32,6 +35,14 @@ class Home extends Component {
       fr.readAsText(event.target.files[0]);
     }
   }
+  
+/* Este fragmento de codigo transforma el .csv cargado por el usuario, y lo transforma a un archivo .json
+dónde asigna el tipo de dato para cada elemento del archivo, desde enteros, flotantes y cadenas de texto.
+
+También se agrega la caracteristica de guardar en almacenamiento del navegador el archivo json para 
+ser consumido por la pagina de charts, dónde se encuentra el código para crear y visualizar la grafica redireccionandola a
+una ruta diferente.
+*/
 
   parseFileToJSON(){
     if(this.file){
@@ -61,6 +72,12 @@ class Home extends Component {
     }
   }
 
+ /* Este metodo renderiza mediante JavaScript la página donde se mostrarán las graficas y tablas, 
+ aplicando diseños de Tailwind y con estructura de HTML, las cuales contienen la creación de titulos "h2",
+ listas, parrafos, links externos y un ejemplo de cómo es un archivo en formato .csv
+ */ 
+
+
   render () {
     return <div className='h-screen min-h-min'>
       <header className='w-full p-3 bg-sky-600 shadow-md'>
@@ -76,7 +93,7 @@ class Home extends Component {
             <li>Columna C: Ciudad de Salida</li>
             <li>Columna D: Ciudad de Llegada</li>
           </ul>
-          <p>Puede ver un ejemplo de la estructura mediante el siguiente archivo <a href="https://github.com/pr0317/input-process-output/blob/main/data/data.csv" className='underline text-sky-500'>archivo.csv</a></p>
+          <p>Puede ver un ejemplo de la estructura mediante el siguiente archivo <a href="https://github.com/pr0317/input-process-output/blob/main/data/data_v2.csv" className='underline text-sky-500'>archivo.csv</a></p>
         </div>
         <div className='my-2'>
           <label htmlFor="formFile" className="form-label inline-block mb-2 text-gray-700 font-bold">Archivo CSV</label>

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
+/* Mediante estilos de CSS nativos y del framework tailwind, se aplica un diseño global a las diferentes páginas que se muestran, 
+así como darle margenes, sombras, una familia de fuente para el texto y diseños personalizados }
+a las tablas.
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
